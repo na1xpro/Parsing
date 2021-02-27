@@ -9,22 +9,51 @@ def get_html(url):
 
 
 def get_data(html):
-    #   Parser
+    #   Parser_info_player
     soup = BeautifulSoup(html, "lxml")
     name = soup.find("div", class_="name-player")
     nick = soup.find("div", class_='nickname-player')
+    god_razhdenia = soup.find_all("span", class_="meaning-text")[1]
+
     strana = soup.find("span", class_="meaning-text")
     info_player = soup.find("div", class_="description-player")
-    photo_main = soup.find("div", class_='block-right').find("img")
+    #photo_plaer = soup.find("div", class_="block-right").get("src")
+
+
+    #Contacts
+
+
+
+    facebook = soup.find("a", "item-network").get("href")
+    vk = soup.find_all("a", class_="item-network")[1].get("href")
+    tviter = soup.find_all("a", class_="item-network")[2].get("href")
+    twitch = soup.find_all("a", class_="item-network")[3].get("href")
+    steam = soup.find_all("a", class_="item-network")[4].get("href")
+    instagram = soup.find_all("a", class_="item-network")[5].get("href")
+
+
+
+
+
+
 
     # Get Force
 
-    # print("Имя ---- " + name.text)
-    # print("Ник ---- " + nick.text)
-    # print("Город ---- " + strana.text)
-    # print("Биография --- "+info_player.text)
+    print("Имя ---- " + name.text)
+    print("Ник ---- " + nick.text)
+    print("Город ---- " + strana.text)
+    print("Год рождения ---- " + god_razhdenia.text)
+    print("Биография --- " + info_player.text)
 
-    # print("Фото ---- "+photo_main.text)
+
+    print("Контакты >< ")
+    print("Facebook ---- "+facebook)
+    print("VK ---- " +vk)
+    print("Tviter ---- " +tviter)
+    print("Twith ---- " +twitch)
+    print("Steam ----" +steam)
+    print("Instagram ---- " +instagram)
+
 
 
 def main():
