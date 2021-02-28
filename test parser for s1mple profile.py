@@ -16,13 +16,13 @@ def get_data(html):
     god_razhdenia = soup.find_all("span", class_="meaning-text")[1]
 
     strana = soup.find("span", class_="meaning-text")
+    rol_v_komande = soup.find_all("span", class_="meaning-text")[2]
+    game_skills = soup.find_all("span", class_="meaning-text")[3]
     info_player = soup.find("div", class_="description-player")
-    #photo_plaer = soup.find("div", class_="block-right").get("src")
+    # photo_plaer = soup.find("div", class_="block-right").get("src")
 
 
-    #Contacts
-
-
+    # Contacts
 
     facebook = soup.find("a", "item-network").get("href")
     vk = soup.find_all("a", class_="item-network")[1].get("href")
@@ -31,29 +31,24 @@ def get_data(html):
     steam = soup.find_all("a", class_="item-network")[4].get("href")
     instagram = soup.find_all("a", class_="item-network")[5].get("href")
 
-
-
-
-
-
-
     # Get Force
 
     print("Имя ---- " + name.text)
     print("Ник ---- " + nick.text)
     print("Город ---- " + strana.text)
     print("Год рождения ---- " + god_razhdenia.text)
+    print("Роль в команде ---- " + rol_v_komande.text)
+    print("Игровой опыт ---- " "c " + game_skills.text)
     print("Биография --- " + info_player.text)
 
-
     print("Контакты >< ")
-    print("Facebook ---- "+facebook)
-    print("VK ---- " +vk)
-    print("Tviter ---- " +tviter)
-    print("Twith ---- " +twitch)
-    print("Steam ----" +steam)
-    print("Instagram ---- " +instagram)
-
+    print("Facebook ---- " + facebook)
+    print("VK ---- " + vk)
+    print("Tviter ---- " + tviter)
+    print("Twith ---- " + twitch)
+    print("Steam ----" + steam)
+    print("Instagram ---- " + instagram)
+    #
 
 
 def main():
