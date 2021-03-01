@@ -1,3 +1,6 @@
+#by Nazar Dutka
+#all code is copyrighted!!!
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -19,7 +22,8 @@ def get_data(html):
     rol_v_komande = soup.find_all("span", class_="meaning-text")[2]
     game_skills = soup.find_all("span", class_="meaning-text")[3]
     info_player = soup.find("div", class_="description-player")
-    # photo_plaer = soup.find("div", class_="block-right").get("src")
+    photo_plaer = soup.find("div", class_="block-right").find("img").get("src")
+
 
 
     # Contacts
@@ -40,6 +44,8 @@ def get_data(html):
     print("Роль в команде ---- " + rol_v_komande.text)
     print("Игровой опыт ---- " "c " + game_skills.text)
     print("Биография --- " + info_player.text)
+    print("Фото ---- " +photo_plaer)
+
 
     print("Контакты >< ")
     print("Facebook ---- " + facebook)
@@ -48,7 +54,7 @@ def get_data(html):
     print("Twith ---- " + twitch)
     print("Steam ----" + steam)
     print("Instagram ---- " + instagram)
-    #
+    # #
 
 
 def main():
