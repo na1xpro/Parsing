@@ -13,23 +13,24 @@ def get_data(html):
 
     title = soup.find("h1", class_="product__title").text
     photo = soup.find("a", class_="product-images__item").get("href")
-    size_M = soup.find_all("input", class_='fn_variant')[0].get("data-variant_name")
-    size_L = soup.find_all("input", class_='fn_variant')[1].get("data-variant_name")
-    price_M = soup.find_all("input", class_='fn_variant')[0].get('data-price').strip()
-    price_L = soup.find_all("input", class_='fn_variant')[1].get('data-price').strip()
 
-    Size_dict = {
+    options = soup.find_all('input', class_='fn_variant')
+    Size_1 = {
 
     }
-    Size_dict.update({size_M: price_M, size_L: price_L})
+    for option in options:
+        name = option.get('data-variant_name')
+        size = option.get('data-price')
+
+        Size_1.update({name: size})
 
     coments_name = soup.find("div", class_='comment__name').text.strip()
     comments_date = soup.find("div", class_='comment__date').text
     comment__text_inner = soup.find("div", class_='comment__text-inner').text.strip()
 
     print("Название  товара: " + title)
-    print('Фото: \n' + photo)
-    print("Размеры и цена: \n" + size_M, '-' + price_M, '\n' + size_L, '-' + price_L)
+    print('Фото: \n' + photo, ' \nРазмер:Цена')
+    print(Size_1)
 
     print("Имя: \n" + coments_name)
     print("Дата написания комента :" + comments_date)
