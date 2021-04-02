@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
+from pprint import pprint
 import requests
 
 url_catalog = 'https://shop.navi.gg/ru/equipment'
@@ -8,7 +9,6 @@ soup = BeautifulSoup(page, "html.parser")
 
 url_list = soup.find_all('a', class_='btn product-item__btn')
 
-# url_list = i.get('href')
 
 for i in url_list:
     link = i.get('href')
@@ -19,12 +19,11 @@ for i in url_list:
 
     title = soup.find('h1', class_="product__title").find("span").text
     photo_list = soup.find_all('a', class_='product-images__item')
-    # print(title)
+
+    full_foto_product = []
     for photo_link in photo_list:
         link_photo = photo_link.get('href')
-
-    #     print(link_photo)
-    # print()
+        full_foto_product.append(link_photo)
 
     price_1 = soup.find()
     price_list = {
@@ -37,12 +36,20 @@ for i in url_list:
         size = variant.get('data-price')
         price_list.update({name: size})
 
-    # print(price_list)
-
-    comment_name = soup.find('div', class_='comment__name').text
+    comment_name = soup.find('div', class_='comment__name').text.strip()
     comment_date = soup.find('div', class_='comment__date').text.strip()
     comment_text = soup.find('div', class_='comment__text-inner').text
 
-    print(comment_text, comment_name, comment_date)
+    product = {
+        'title': title,
+        'image': full_foto_product,
+        'price': price_list,
+        'comment': {
+            'name': comment_name,
+            'date': comment_date,
+            'text': comment_text,
+        }
+    }
 
-price = '//h1[@class="product__title"]/text()'
+    pprint(product)
+    print()
