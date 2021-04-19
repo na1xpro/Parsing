@@ -36,20 +36,35 @@ for i in url_list:
         size = variant.get('data-price')
         price_list.update({name: size})
 
-    comment_name = soup.find('div', class_='comment__name').text.strip()
-    comment_date = soup.find('div', class_='comment__date').text.strip()
-    comment_text = soup.find('div', class_='comment__text-inner').text
 
-    product = {
-        'title': title,
-        'image': full_foto_product,
-        'price': price_list,
-        'comment': {
-            'name': comment_name,
-            'date': comment_date,
-            'text': comment_text,
-        }
-    }
 
-    pprint(product)
-    print()
+
+
+    comment_name = soup.find_all('div', class_='comment__item')
+    # print(comment_name)
+    for test in comment_name:
+        lol = test.get('class="comment__name"')
+        print(lol)
+
+
+
+
+
+
+
+
+
+    #print(comment_name)
+    # product = {
+    #     'title': title,
+    #     'image': full_foto_product,
+    #     'price': price_list,
+    #     'comment': {
+    #         'name': comment_name,
+    #         'date': comment_date,
+    #         'text': comment_text,
+    #     }
+    # }
+    #
+    # pprint(product)
+    # print()
